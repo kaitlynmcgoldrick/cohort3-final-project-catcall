@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { handleSubmitReport } from '../actions/index';
-import { GoogleApiWrapper } from 'google-maps-react' 
-import Map from '../components/Map'
+
+import Map from '../components/Map';
+
+import { updatePinLocation } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 class MapContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
       return (
         <div>
-          <h1> Google Maps API + React </h1> 
-          <Map google={this.props.google} />
+          <Map google={this.props.google} updatePinLocation={updatePinLocation}/>
         </div>
       );
     }
   }
 
+const mapStateToProps = (state) => {
+    return {
+        pinLocation: state.pinLocation
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ updatePinLocation: updatePinLocation }, dispatch)
+}
 // const mapDispatchToProps = {
 // };
 
@@ -26,8 +32,6 @@ class MapContainer extends Component {
 //     apiKey: 'AIzaSyA-gMsKVvKdp63xHF1AGfQ-r65vQV4Jsh4',
 //   })(MapContainer);
 
-// export default connect(null, mapDispatchToProps)(MapWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyA-gMsKVvKdp63xHF1AGfQ-r65vQV4Jsh4',
-  })(MapContainer);
+
