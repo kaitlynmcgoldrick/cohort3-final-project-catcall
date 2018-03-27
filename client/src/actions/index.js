@@ -29,13 +29,13 @@ export const fetchLocation = (location) => {
     }
 }
 
-export const updatePinLocation = (lat, lng) => {
+export const updatePinLocation = (latitude, longitude) => {
     return {
         type: ACTION_TYPES.updatePinLocation,
         payload: {
             pinLocation: { 
-                lat,
-                lng
+                latitude,
+                longitude
             }
         }
     }

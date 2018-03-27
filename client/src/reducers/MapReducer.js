@@ -1,8 +1,8 @@
 import { ACTION_TYPES } from '../actions/index';
 
 const DEFAULT_STATE = {
-    lat: '',
-    lng: ''
+    latitude: '',
+    longitude: ''
 }
 
 const MapReducer = (state = DEFAULT_STATE, { type, payload }) => {

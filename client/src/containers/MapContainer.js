@@ -8,12 +8,17 @@ import { bindActionCreators } from 'redux';
 
   class MapContainer extends Component {
     render() {
-      const { updatePinLocation, pinLocation } = this.props;
+      const { updatePinLocation, location, pinLocation } = this.props;
       return (
         <div>
+          <div>
+            <h3>Latitude: {this.props.pinLocation.latitude}</h3>
+            <h3>Longitude: {this.props.pinLocation.longitude}</h3>
+          </div>
           <Map
             google={this.props.google}
             updatePinLocation={updatePinLocation}
+            location={location}
             pinLocation={pinLocation} />
         </div>
       );
@@ -21,6 +26,7 @@ import { bindActionCreators } from 'redux';
   }
 
 const mapStateToProps = (state) => ({
+  location: state.rootReducer.location,
   pinLocation: state.rootReducer.pinLocation
 })
 
