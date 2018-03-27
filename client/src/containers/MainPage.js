@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { bindActionCreators } from 'redux';
 import { getUserLocation, fetchLocation } from '../actions/index';
 import { Link } from 'react-router-dom';
 
@@ -49,25 +48,25 @@ class MainPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userLocation: state.userInput,
-  browserLocation: state.browserLocation,
-})
-// const mapStateToProps = storeState => ({
-//   userLocation: storeState.rootReducer.locationReducer.userInput,
-//   browserLocation: storeState.rootReducer.locationReducer.browserLocation,
+// const mapStateToProps = state => ({
+//   userLocation: state.userInput,
+//   browserLocation: state.browserLocation,
 // })
+const mapStateToProps = state => ({
+  userLocation: state.rootReducer.location.userInput,
+  browserLocation: state.rootReducer.location.browserLocation,
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    { getUserLocation: getUserLocation,
-      fetchLocation: fetchLocation
-    }, dispatch)
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators(
+//     { getUserLocation: getUserLocation,
+//       fetchLocation: fetchLocation
+//     }, dispatch)
+// }
 
-// const mapDispatchToProps = {
-//   getUserLocation,
-//   fetchLocation,
-// };
+const mapDispatchToProps = {
+  getUserLocation,
+  fetchLocation,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
