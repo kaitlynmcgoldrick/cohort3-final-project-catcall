@@ -47,26 +47,15 @@ class Map extends Component {
           title: location.name,
           draggable: true // the title of the marker is set to the name of the location
         });
-
-        if (this.props.updatePinLocation) {
-            console.log("good")
-        } else {
-            console.log("bad")
-        }
         
         marker.addListener('dragstart', function() {
-          // const newLoc = marker.getPosition();
-          // console.log(newLoc);
-          console.log("doing something")
+
         });
 
         marker.addListener('dragend', () => {
             var position = marker.getPosition()
             var lat = position.lat()
-        //   console.log(lat);
             var lng = position.lng()
-        //   console.log(lng);
-        //   console.log("doing something else")
             this.props.updatePinLocation(lat, lng);
         });
       })

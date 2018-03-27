@@ -6,31 +6,27 @@ import Map from '../components/Map';
 import { updatePinLocation } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
-class MapContainer extends Component {
+  class MapContainer extends Component {
     render() {
+      const { updatePinLocation, pinLocation } = this.props;
       return (
         <div>
-          <Map google={this.props.google} updatePinLocation={updatePinLocation}/>
+          <Map
+            google={this.props.google}
+            updatePinLocation={updatePinLocation}
+            pinLocation={pinLocation} />
         </div>
       );
     }
   }
 
-const mapStateToProps = (state) => {
-    return {
-        pinLocation: state.pinLocation
-    }
-}
+const mapStateToProps = (state) => ({
+  pinLocation: state.rootReducer.pinLocation
+})
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ updatePinLocation: updatePinLocation }, dispatch)
 }
-// const mapDispatchToProps = {
-// };
-
-// const MapWrapper = GoogleApiWrapper({
-//     apiKey: 'AIzaSyA-gMsKVvKdp63xHF1AGfQ-r65vQV4Jsh4',
-//   })(MapContainer);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
 
