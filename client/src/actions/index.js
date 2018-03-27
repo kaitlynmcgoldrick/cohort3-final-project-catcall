@@ -30,10 +30,13 @@ export const fetchLocation = (location) => {
 }
 
 export const updatePinLocation = (lat, lng) => {
-    console.log("We got a new lat", lat)
-    console.log("We got a new lat", lng)
     return {
         type: ACTION_TYPES.updatePinLocation,
-        payload: lat
+        payload: {
+            pinLocation: { 
+                lat,
+                lng
+            }
+        }
     }
 }

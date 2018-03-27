@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { ACTION_TYPES } from '../actions/index';
 
 import MapReducer from './MapReducer';
+// import { routerReducer }  from 'react-router-redux';
 
 const DEFAULT_STATE = {
     browserLocation: {
